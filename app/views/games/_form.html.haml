@@ -14,11 +14,11 @@
     .col-md-4.col-sm-2.game_players
       %label Players
       - @users.each do |u|
-        .checkbox
-          %label
-            = hidden_field_tag("users[#{u.id}]", false)
-            = check_box_tag "users[#{u.id}]", true, @game.new_record? ? true : @game.payments.where(user_id: u.id).exists?
-            = u.name
+        .checkbox.checkbox-success
+          = hidden_field_tag("users[#{u.id}]", false)
+          = check_box_tag "users[#{u.id}]", true, @game.new_record? ? true : @game.payments.where(user_id: u.id).exists?, id: "checkbox_#{u.id}"
+          %label{for: "checkbox_#{u.id}"}
+            = u.name.titleize
       =# f.fields_for :payments do |payment_form|
       =# payment_form.input :user_id, as: :boolean, label: payment_form.object.user.name, input_html: { value: true }
   .row
