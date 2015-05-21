@@ -10,6 +10,7 @@
           %tr
             %th #
             %th Name
+            /%th 
             %th.text-center Paid Amount
             %th.text-center Outstanding Amount
             %th Actions
@@ -18,6 +19,7 @@
             %tr
               %td= i + 1 
               %td= user.name
+              /%td=# image_tag "http://www.gravatar.com/avatar/#{calculate_md5(user.email)}"
               %td.text-center= user.paid_amount 
               %td.text-center= user.outstanding_amount 
               %td
