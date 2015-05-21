@@ -29,7 +29,7 @@ class UserPaymentsController < ApplicationController
 
     respond_to do |format|
       if @user_payment.save
-        format.html { redirect_to user_user_payments_path(@user), notice: 'User payment was successfully created.' }
+        format.html { redirect_to users_path(@user), notice: 'User payment was successfully created.' }
         format.json { render :show, status: :created, location: @user_payment }
       else
         format.html { render :new }
@@ -43,7 +43,7 @@ class UserPaymentsController < ApplicationController
   def update
     respond_to do |format|
       if @user_payment.update(user_payment_params)
-        format.html { redirect_to user_user_payments_path(@user), notice: 'User payment was successfully updated.' }
+        format.html { redirect_to users_path(@user), notice: 'User payment was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_payment }
       else
         format.html { render :edit }
