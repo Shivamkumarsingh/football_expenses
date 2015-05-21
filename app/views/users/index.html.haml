@@ -3,22 +3,24 @@
     %h4 
       Users
       = link_to 'New User', new_user_path, class: 'pull-right btn btn-sm btn-primary'
-  %table.table
-    %thead
-      %tr
-        %th #
-        %th Name
-        %th.text-center Paid Amount
-        %th.text-center Outstanding Amount
-        %th Actions
-    %tbody
-      - @users.each_with_index do |user, i|
-        %tr
-          %td= i + 1 
-          %td= user.name
-          %td.text-center= user.paid_amount 
-          %td.text-center= user.outstanding_amount 
-          %td
-            = link_to 'Games', games_user_path(user), class: 'btn btn-sm btn-default' 
-            = link_to 'Pay', new_user_user_payment_path(user), class: 'btn btn-sm btn-default'
-            = link_to 'Paid Amounts', user_user_payments_path(user), class: 'btn btn-sm btn-default'
+  .panel-body
+    .table-responsive
+      %table.table
+        %thead
+          %tr
+            %th #
+            %th Name
+            %th.text-center Paid Amount
+            %th.text-center Outstanding Amount
+            %th Actions
+        %tbody
+          - @users.each_with_index do |user, i|
+            %tr
+              %td= i + 1 
+              %td= user.name
+              %td.text-center= user.paid_amount 
+              %td.text-center= user.outstanding_amount 
+              %td
+                = link_to 'Games', games_user_path(user), class: 'btn btn-sm btn-default' 
+                = link_to 'Pay', new_user_user_payment_path(user), class: 'btn btn-sm btn-default'
+                = link_to 'Paid Amounts', user_user_payments_path(user), class: 'btn btn-sm btn-default'

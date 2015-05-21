@@ -1,17 +1,17 @@
 = simple_form_for(@game) do |f|
   .row
-    .col-md-3
+    .col-md-3.col-sm-5
       %label Select Date
       #game_date_inline{data: { date: format_date(f.object.date) }}
       = f.input :date, as: :hidden, input_html: { value: format_date(f.object.date) }
-    .col-md-2
+    .col-md-2.col-sm-3
       = f.input :amount
       %label 
         %h4
           Per Player :
           %span#amount_per_player 0
-    .col-md-1
-    .col-md-4.game_players
+    .col-md-1.col-sm-1
+    .col-md-4.col-sm-2.game_players
       %label Players
       - User.all.each do |u|
         .checkbox
@@ -22,7 +22,7 @@
       =# payment_form.input :user_id, as: :boolean, label: payment_form.object.user.name, input_html: { value: true }
   .row
     %hr
-    .col-md-12
+    .col-md-12.col-sm-12
       = f.button :submit, class: 'btn-primary'
 :javascript
   $('#game_date_inline').datepicker();
