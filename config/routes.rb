@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :games, except: [:destroy]
-  resources :users, only: [:index] do
+  resources :users, except: [:destroy, :update] do
     member do
       get :games
     end

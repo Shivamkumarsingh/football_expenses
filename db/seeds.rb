@@ -7,8 +7,24 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 #
 
-User.create!(email: 'admin@football.com', password: 'admin123')
+emails = %w(
+  abhishek@joshsoftware.com
+  aditya@joshsoftware.com
+  deepak@joshsoftware.com
+  gautam@joshsoftware.com
+  jiren@joshsoftware.com
+  pankaj@joshsoftware.com
+  pramod@joshsoftware.com
+  shailesh@joshsoftware.com
+  anil@joshsoftware.com
+  ashish@joshsoftware.com
+  kiran@joshsoftware.com
+  pratik@joshsoftware.com
+  sethu@joshsoftware.com
+  rishi@joshsoftware.com
+)
 
-10.times do |i|
-  User.create!(email: "user#{i}@football.com", password: 'user123', name: "User-#{i}")
+emails.each do |email|
+  name = email.split('@').first
+  User.create(email: email, password: "#{name}123", name: name)
 end
