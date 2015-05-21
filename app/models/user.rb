@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :name, presence: true
-   validates_uniqueness_of :name
+  validates_uniqueness_of :name
 
   has_many :payments
   has_many :user_payments

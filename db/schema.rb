@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150520211241) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "games", force: :cascade do |t|
     t.date     "date"
     t.integer  "amount",     default: 1800
@@ -28,8 +31,8 @@ ActiveRecord::Schema.define(version: 20150520211241) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "payments", ["game_id"], name: "index_payments_on_game_id"
-  add_index "payments", ["user_id"], name: "index_payments_on_user_id"
+  add_index "payments", ["game_id"], name: "index_payments_on_game_id", using: :btree
+  add_index "payments", ["user_id"], name: "index_payments_on_user_id", using: :btree
 
   create_table "user_payments", force: :cascade do |t|
     t.integer  "amount"
@@ -38,7 +41,7 @@ ActiveRecord::Schema.define(version: 20150520211241) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "user_payments", ["user_id"], name: "index_user_payments_on_user_id"
+  add_index "user_payments", ["user_id"], name: "index_user_payments_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -57,7 +60,10 @@ ActiveRecord::Schema.define(version: 20150520211241) do
     t.integer  "amount",                 default: 0
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "payments", "games"
+  add_foreign_key "payments", "users"
+  add_foreign_key "user_payments", "users"
 end
