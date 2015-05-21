@@ -1,0 +1,7 @@
+.panel.panel-default
+  .panel-heading
+    %h4 
+      #{@user.name.titleize} Payment
+      = link_to 'Back', user_user_payments_path(@user), class: 'pull-right btn btn-sm btn-primary'
+  .panel-body
+    = render 'form'

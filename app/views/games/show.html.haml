@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading
+    %h4 
+      Game #{format_date(@game.date)}
+      = link_to 'Back', games_path, class: 'pull-right btn btn-sm btn-primary'
+  .panel-body
+    %h4 Amount Per Person: #{(@game.amount / @game.payments.count).ceil}
+    %hr
+    %h4 Players
+    %ol
+      - @game.payments.each do |payment|
+        %li= payment.user.name
