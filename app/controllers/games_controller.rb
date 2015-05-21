@@ -27,7 +27,7 @@ class GamesController < ApplicationController
   # POST /games.json
   def create
     @game = Game.new(game_params)
-    @game.payments_attributes = build_payments_params(@game)
+    @game.payments_attributes = build_payments_params(@game, game_params[:amount])
 
     respond_to do |format|
       if @game.save
@@ -43,7 +43,7 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
-    @game.payments_attributes = build_payments_params(@game)
+    @game.payments_attributes = build_payments_params(@game, game_params[:amount])
 
     respond_to do |format|
       if @game.update(game_params)
@@ -74,13 +74,13 @@ class GamesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def game_params
-    params.require(:game).permit(:amount, :date, payments_attributes: []).tap do |fields|
+    @game_params ||= params.require(:game).permit(:amount, :date, payments_attributes: []).tap do |fields|
       fields[:date] = Date.strptime(fields[:date], '%d/%m/%Y') if fields[:date].present?
     end
   end
 
-  def build_payments_params(game)
-    per_persion = (game.amount.to_f / params[:users].count{|k,v| v == 'true'}).ceil
+  def build_payments_params(game, amount)
+    per_persion = (amount.to_f / params[:users].count{|k,v| v == 'true'}).ceil
 
     payments = game.payments.to_a
 
