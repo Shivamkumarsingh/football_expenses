@@ -28,3 +28,5 @@ emails.each do |email|
   name = email.split('@').first
   User.create(email: email, password: "#{name}123", name: name)
 end
+
+User.create(email: 'paritoshbotre@joshsoftware.com', password: 'paritosh123', name: 'paritosh')
