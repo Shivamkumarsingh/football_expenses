@@ -1,0 +1,21 @@
+.panel.panel-default
+  .panel-heading
+    %h4 
+      #{@user.name.titleize}'s paid amounts
+  %table.table
+    %thead
+      %tr
+        %th #
+        %th Date
+        %th Amount
+        %th Actions
+    %tbody
+      - @user_payments.each_with_index do |payment, i|
+        %tr
+          %td= i + 1 
+          %td= format_date(payment.created_at)
+          %td= payment.amount 
+          %td
+            = link_to 'New', new_user_user_payment_path(@user), class: 'btn btn-sm btn-default'
+            = link_to 'Edit', edit_user_user_payment_path(@user, payment), class: 'btn btn-sm btn-default'
+            = link_to 'Delete', user_user_payment_path(@user, payment), method: :delete, class: 'btn btn-sm btn-default'

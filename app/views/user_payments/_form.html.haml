@@ -1,0 +1,7 @@
+= simple_form_for(@user_payment, url: form_url) do |f|
+  .row
+    .form-inputs.col-md-3
+      = f.input :amount
+  .row
+    .form-actions.col-md-3
+      = f.button :submit, class: 'btn-primary'
