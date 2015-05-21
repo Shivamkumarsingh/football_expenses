@@ -5,6 +5,10 @@ $(document).ready(function(){
     calculatePerPlayer();
   })
 
+  $(document).on('change', '#game_amount', function(){
+    calculatePerPlayer();
+  })
+
 })
 function calculatePerPlayer(){
   var total_amount = $('#game_amount').val();
