@@ -15,20 +15,22 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
+    @users = User.all
   end
 
   # GET /games/1/edit
   def edit
+    @users = User.all
   end
 
   # POST /games
   # POST /games.json
   def create
     @game = Game.new(game_params)
+    @game.payments_attributes = build_payments_params(@game)
 
     respond_to do |format|
       if @game.save
-        manage_payments(@game)
         format.html { redirect_to @game, notice: 'Game was successfully created.' }
         format.json { render :show, status: :created, location: @game }
       else
@@ -41,10 +43,10 @@ class GamesController < ApplicationController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
+    @game.payments_attributes = build_payments_params(@game)
+
     respond_to do |format|
       if @game.update(game_params)
-        manage_payments(@game)
-
         format.html { redirect_to @game, notice: 'Game was successfully updated.' }
         format.json { render :show, status: :ok, location: @game }
       else
@@ -65,25 +67,37 @@ class GamesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_game
-      @game = Game.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_game
+    @game = Game.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def game_params
-      params.require(:game).permit(:amount, :date).tap do |fields|
-        fields[:date] = Date.strptime(fields[:date], '%d/%m/%Y') if fields[:date].present?
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def game_params
+    params.require(:game).permit(:amount, :date, payments_attributes: []).tap do |fields|
+      fields[:date] = Date.strptime(fields[:date], '%d/%m/%Y') if fields[:date].present?
+    end
+  end
+
+  def build_payments_params(game)
+    per_persion = (game.amount.to_f / params[:users].count{|k,v| v == 'true'}).ceil
+
+    payments = game.payments.to_a
+
+    params[:users].map do |id, v|
+      if game
+        payment_id = payments.find{|v| v.user_id == id.to_i }.try(:id)
+      else
+        payment_id = nil
+      end
+
+      {
+        user_id: id,
+        amount: per_persion
+      }.tap do |f|
+        f[:id] = payment_id if payment_id
+        f[:_destroy] = '1' if v == 'false'
       end
     end
-
-    def manage_payments(game)
-     game.payments.destroy_all
-
-     per_persion = (game.amount.to_f / params[:users].length).ceil
-
-     params[:users].each do |id, v|
-       game.payments.create(user_id: id, amount: per_persion) if v == 'true'
-     end
-    end
+  end
 end

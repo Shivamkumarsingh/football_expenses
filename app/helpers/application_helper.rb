@@ -17,4 +17,10 @@ module ApplicationHelper
   def active_class(controller)
     (params[:controller] == controller) && 'active'
   end
+
+  def calculate_md5(string)
+    m = Digest::MD5.new
+    m.update(string)
+    m.hexdigest
+  end
 end
