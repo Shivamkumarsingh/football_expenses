@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
@@ -10,6 +10,7 @@ class GamesController < ApplicationController
   # GET /games/1
   # GET /games/1.json
   def show
+    @game = Game.find(params[:id])
   end
 
   # GET /games/new
@@ -69,7 +70,12 @@ class GamesController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_game
-    @game = Game.find(params[:id])
+    @game = Game.where(editable: true, id: params[:id]).first
+
+    unless @game
+      redirect_to games_url, notice: 'Action not allowed.'
+      return false
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
