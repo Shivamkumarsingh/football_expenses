@@ -10,7 +10,6 @@
           %tr
             %th #
             %th Name
-            /%th 
             %th.text-center Paid Amount
             %th.text-center Outstanding Amount
             %th Actions
@@ -18,8 +17,7 @@
           - @users.each_with_index do |user, i|
             %tr
               %td= i + 1 
-              %td= user.name
-              /%td=# image_tag "http://www.gravatar.com/avatar/#{calculate_md5(user.email)}"
+              %td= user.name.titleize
               %td.text-center= user.paid_amount 
               %td.text-center= user.outstanding_amount 
               %td
