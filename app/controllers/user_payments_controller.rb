@@ -26,6 +26,7 @@ class UserPaymentsController < ApplicationController
   # POST /user_payments.json
   def create
     @user_payment = @user.user_payments.build(user_payment_params)
+    @user_payment.receiver_id = current_user.id
 
     respond_to do |format|
       if @user_payment.save
@@ -41,6 +42,8 @@ class UserPaymentsController < ApplicationController
   # PATCH/PUT /user_payments/1
   # PATCH/PUT /user_payments/1.json
   def update
+    @user_payment.receiver_id = current_user.id
+
     respond_to do |format|
       if @user_payment.update(user_payment_params)
         format.html { redirect_to users_path(@user), notice: 'User payment was successfully updated.' }
