@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def games
-    @payments = @user.payments
+    @payments = Payment.where(user_id: @user.id).includes(:game).order('games.date desc')
   end
 
   private
