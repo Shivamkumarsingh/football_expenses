@@ -2,7 +2,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:games, :pay]
 
   def index
-    @users = User.all
+    # sort users according to their outstanding amount
+    @users = User.all.sort{|a,b| a.outstanding_amount <=> b.outstanding_amount}.reverse
   end
 
   def new
@@ -24,7 +25,7 @@ class UsersController < ApplicationController
   end
 
   def games
-    @payments = @user.payments
+    @payments = Payment.where(user_id: @user.id).includes(:game).order('games.date desc')
   end
 
   def notify

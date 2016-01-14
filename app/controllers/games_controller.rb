@@ -4,13 +4,13 @@ class GamesController < ApplicationController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all.order("date desc")
+    @games = Game.all.order('date desc')
   end
 
   # GET /games/1
   # GET /games/1.json
   def show
-    @game = Game.find(params[:id])
+    @game = Game.where(id: params[:id]).includes(payments: [:user]).first
   end
 
   # GET /games/new
