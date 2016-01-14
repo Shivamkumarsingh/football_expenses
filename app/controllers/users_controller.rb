@@ -27,6 +27,13 @@ class UsersController < ApplicationController
     @payments = @user.payments
   end
 
+  def notify
+    User.all.each do |user|
+      Notify.notify_user(user).deliver_now
+    end
+    redirect_to users_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

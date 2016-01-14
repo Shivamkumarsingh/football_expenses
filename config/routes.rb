@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       get :games
     end
 
+    collection do
+      get :notify
+    end
+
     resources :user_payments
   end
 
