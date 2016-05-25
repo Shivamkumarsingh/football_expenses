@@ -16,12 +16,12 @@ class GamesController < ApplicationController
   # GET /games/new
   def new
     @game = Game.new
-    @users = User.all
+    @users = User.where(status: true)
   end
 
   # GET /games/1/edit
   def edit
-    @users = User.all
+    @users = User.where(status: true)
   end
 
   # POST /games
