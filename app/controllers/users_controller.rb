@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:games, :pay]
+  before_action :set_user, only: [:games, :pay, :update_status]
 
   def index
     # sort users according to their outstanding amount
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
   end
 
   def update_status
-    @user.status = !@user.status 
+    @user.status = !@user.status
     @user.save
     redirect_to users_path
   end
