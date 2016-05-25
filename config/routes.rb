@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :games, except: [:destroy]
   resources :users, except: [:destroy, :update] do
     member do
+      get :update_status
       get :games
     end
 
