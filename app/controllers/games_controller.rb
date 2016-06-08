@@ -80,7 +80,7 @@ class GamesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def game_params
-    @game_params ||= params.require(:game).permit(:amount, :date, payments_attributes: []).tap do |fields|
+    @game_params ||= params.require(:game).permit(:amount, :date, :goals, payments_attributes: []).tap do |fields|
       fields[:date] = Date.strptime(fields[:date], '%d/%m/%Y') if fields[:date].present?
     end
   end

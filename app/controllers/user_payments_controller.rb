@@ -5,7 +5,7 @@ class UserPaymentsController < ApplicationController
   # GET /user_payments
   # GET /user_payments.json
   def index
-    @user_payments = @user.user_payments
+    @user_payments = @user.user_payments.order(created_at: :desc)
   end
 
   # GET /user_payments/1

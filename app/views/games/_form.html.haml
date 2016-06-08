@@ -4,12 +4,19 @@
       %label Select Date
       #game_date_inline{data: { date: format_date(f.object.date) }}
       = f.input :date, as: :hidden, input_html: { value: format_date(f.object.date) }
-    .col-md-2.col-sm-3
+    .col-md-3.col-sm-3
       = f.input :amount
       %label 
         %h4
           Per Player :
           %span#amount_per_player 0
+          Rs
+      = f.input :goals
+      %label 
+        %h4
+          Goal Value:
+          %span#amount_per_goal 0
+          Rs
     .col-md-1.col-sm-1
     .col-md-4.col-sm-2.game_players
       %label Players

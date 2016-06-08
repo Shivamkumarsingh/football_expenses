@@ -1,4 +1,6 @@
 .panel.panel-default
+  = render 'outstanding' 
+.panel.panel-default
   .panel-heading
     %h4 
       Games
@@ -12,15 +14,7 @@
             %th Date
             %th No of Players
             %th Per Player Amount
+            %th Goals
             %th Actions
         %tbody
-          - @games.each_with_index do |game, i|
-            %tr
-              %td= i + 1 
-              %td= format_date(game.date)
-              %td= players_count = game.payments.count
-              %td= players_count > 0 ? (game.amount / players_count) : '-NA-'
-              %td
-                - if game.editable
-                  = link_to 'Edit', edit_game_path(game), class: 'btn btn-sm btn-default'
-                = link_to 'View', game_path(game), class: 'btn btn-sm btn-default'
+          = render @games

@@ -9,7 +9,6 @@
   %body
     = render "navigation" if user_signed_in?
     .container
-      = render 'outstanding'
       = yield
     :javascript
       #{notifications}
