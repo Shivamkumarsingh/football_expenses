@@ -23,4 +23,12 @@ module ApplicationHelper
     m.update(string)
     m.hexdigest
   end
+
+  def total_spent
+    Game.sum(:amount).to_i
+  end
+
+  def total_paid
+    UserPayment.sum(:amount).to_i
+  end
 end
