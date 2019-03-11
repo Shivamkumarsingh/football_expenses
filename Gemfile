@@ -34,6 +34,7 @@ gem 'nested_form', '~> 0.3.2'
 gem 'country_select', '~> 2.1.1'
 gem 'kaminari', '~> 0.16.3'
 gem 'bootstrap-datepicker-rails'
+gem 'sendgrid-ruby'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
