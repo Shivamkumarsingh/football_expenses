@@ -8,20 +8,39 @@
 #
 
 emails = %w(
-  abhishek@joshsoftware.com
-  aditya@joshsoftware.com
-  deepak@joshsoftware.com
+  amoludage@joshsoftware.com,
+  sahil@joshsoftware.com,
+  suraj@joshsoftware.com,
+  sambhaji@joshsoftware.com,
+  umesh.agashe@joshsoftware.com,
+  harish@joshsoftware.com,
+  anusha@joshsoftware.com,
+  ashvini@joshsoftware.com,
+  pratik.thakare@joshsoftware.com,
+  pinky@joshsoftware.com,
+  swati@joshsoftware.com,
+  ajay@joshsoftware.com,
+  rahul@joshsoftware.com,
+  rahul.ojha@joshsoftware.com,
+  yogesh@joshsoftware.com,
+  priyanka@joshsoftware.com,
+  rishul.gulati@joshsoftware.com,
+  amit.nevase@joshsoftware.com,
+  rohit.paneliya@joshsoftware.com,
+  chinmay.sonawane@joshsoftware.com,
+  niranjan.patil@joshsoftware.com,
+  krishna@joshsoftware.com,
+  ganesh@joshsoftware.com,
+  akshay@joshsoftware.com,
+  bhushan.kalode@joshsoftware.com,
+  nikhil@joshsoftware.com,
+  akshayb@joshsoftware.com,
+  shweta@joshsoftware.com,
+  vaibhav.thombare@joshsoftware.com,
+  kaiwalya.pataskar@joshsoftware.com,
+  anil@joshsoftware.com,
+  sethu@joshsoftware.com,
   gautam@joshsoftware.com
-  jiren@joshsoftware.com
-  pankaj@joshsoftware.com
-  pramod@joshsoftware.com
-  shailesh@joshsoftware.com
-  anil@joshsoftware.com
-  ashish@joshsoftware.com
-  kiran@joshsoftware.com
-  pratik@joshsoftware.com
-  sethu@joshsoftware.com
-  rishi@joshsoftware.com
 )
 
 emails.each do |email|
@@ -29,4 +48,4 @@ emails.each do |email|
   User.create(email: email, password: "#{name}123", name: name)
 end
 
-User.create(email: 'paritoshbotre@joshsoftware.com', password: 'paritosh123', name: 'paritosh')
+User.create(email: 'shivam.singh@joshsoftware.com', password: 'shivam123', name: 'paritosh')
