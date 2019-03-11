@@ -85,8 +85,8 @@ Rails.application.configure do
     address: "smtp.sendgrid.net",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["SENDGRID_USERNAME"],
-    password: ENV['SENDGRID_PASSWORD'],
+    user_name: "shivam.singh@joshsoftware.com",
+    password: "shivam123",
     port: 587
   }
 end
