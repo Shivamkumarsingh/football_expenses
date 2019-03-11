@@ -40,7 +40,8 @@ emails = %w(
   kaiwalya.pataskar@joshsoftware.com,
   anil@joshsoftware.com,
   sethu@joshsoftware.com,
-  gautam@joshsoftware.com
+  gautam@joshsoftware.com,
+  pramod@joshsoftware.com
 )
 
 emails.each do |email|
